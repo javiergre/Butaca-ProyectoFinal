@@ -15,15 +15,19 @@ model MoodEntry {
   emotion    String
   confidence Float?
   createdAt  DateTime @default(now())
+
+  @@index([userId, createdAt])
 }
 
 model Favorite {
-  id         String @id @default(uuid())
+  id         String   @id @default(uuid())
   userId     String
   tmdbId     Int
-  mediaType  String // 'movie' | 'tv'
+  mediaType  String   // 'movie' | 'tv'
   title      String
   posterPath String?
+  createdAt  DateTime @default(now())
 
   @@unique([userId, mediaType, tmdbId])
+  @@index([userId, createdAt])
 }
