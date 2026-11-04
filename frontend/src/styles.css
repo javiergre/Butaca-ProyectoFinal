@@ -1,1 +1,75 @@
-/* TODO: estilos globales (paleta, tipografía, layout) */
+:root {
+  /* Paleta */
+  --bg: #0D0D11;       /* Onyx */
+  --panel: #1A1A24;    /* Shadow Grey */
+  --accent: #E60026;   /* Rojo Cine */
+  --amber: #FFB300;    /* Amber Flame */
+  --aqua: #00E5FF;     /* Electric Aqua */
+
+  /* Derivados: texto, bordes y errores */
+  --text: #F2F2F6; --muted: #A3A3B5; --line: #34344A; --danger: #FF5C75;
+
+  /* Alias que usan los CSS de otras ramas */
+  --cream: var(--text); --brass: var(--amber); --velvet: var(--accent);
+
+  --display: 'Playfair Display', Georgia, serif;
+  --body: 'Jost', system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--text); font: 17px/1.5 var(--body); }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.15; margin: 0 0 .5rem; }
+h2 { font-size: 1.35rem; margin-top: 1.75rem; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--aqua); outline-offset: 3px; }
+.lead { color: var(--muted); }
+.status, .fineprint { color: var(--muted); }
+.error { background: var(--panel); border-left: 4px solid var(--danger); padding: .6rem .9rem; text-align: left; }
+
+/* Logo */
+.wordmark { font-family: var(--display); font-style: italic; font-weight: 900; letter-spacing: -.01em; line-height: 1; margin: 0; }
+.wordmark .dot { color: var(--amber); }
+.wordmark.sm { font-size: 1.7rem; }
+
+/* Franja de tres rayas  */
+.stripes { height: 9px; background: linear-gradient(var(--accent) 0 3px, var(--amber) 3px 6px, var(--aqua) 6px 9px); }
+
+/* Botones: planos, borde grueso y sombra dura */
+.provider, .primary {
+  display: flex; align-items: center; justify-content: center; gap: .7rem; width: 100%;
+  padding: .85rem 1.25rem; font: 600 .9rem var(--body); letter-spacing: .14em; text-transform: uppercase;
+  transition: transform .12s, box-shadow .12s;
+}
+.provider { background: transparent; color: var(--text); border: 2px solid var(--text); box-shadow: 4px 4px 0 var(--line); }
+.provider:hover:not(:disabled) { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--aqua); }
+.primary { background: var(--accent); color: #fff; border: 2px solid var(--accent); box-shadow: 4px 4px 0 var(--amber); }
+.primary:hover:not(:disabled) { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--amber); }
+.provider:active:not(:disabled), .primary:active:not(:disabled) { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--aqua); }
+.provider:disabled, .primary:disabled { opacity: .5; cursor: not-allowed; }
+
+/* Login */
+.login { min-height: 100vh; display: grid; place-items: center; padding: 2rem 1rem; }
+.login-card { width: 100%; max-width: 400px; background: var(--panel); border: 2px solid var(--text); box-shadow: 8px 8px 0 var(--accent); }
+.poster-art { display: block; width: 100%; height: auto; border-bottom: 2px solid var(--text); }
+.login-body { padding: 1.5rem 1.5rem 1.75rem; text-align: center; }
+.login-body .wordmark { font-size: 3.4rem; }
+.login-body .lead { margin: .75rem 0 0; }
+.login-actions { display: grid; gap: 1.1rem; margin: 1.5rem 0 1.25rem; }
+.login-body .fineprint { margin: 1.25rem 0 0; font-size: .9rem; }
+
+/* App con sesión */
+.app { max-width: 1000px; margin: 0 auto; padding: 0 1rem 4rem; }
+.app main { padding-top: 1.5rem; }
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 0 .8rem; }
+.who { display: flex; align-items: center; gap: .8rem; color: var(--muted); font-size: .9rem; min-width: 0; }
+.who-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px; }
+.ghost { background: none; border: 2px solid var(--line); color: var(--text); padding: .25rem .9rem;
+  font: 600 .75rem var(--body); letter-spacing: .14em; text-transform: uppercase; }
+.ghost:hover { border-color: var(--aqua); color: var(--aqua); }
+
+.tabs { display: flex; flex-wrap: wrap; gap: .25rem; border-bottom: 2px solid var(--line); }
+.tabs a { padding: .85rem 1.1rem; margin-bottom: -2px; color: var(--muted); text-decoration: none; border-bottom: 3px solid transparent;
+  font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: .85rem; }
+.tabs a:hover { color: var(--text); }
+.tabs a.active { color: var(--text); border-bottom-color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
