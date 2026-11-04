@@ -1,7 +1,21 @@
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { GithubIcon, GoogleIcon } from '../components/Icons';
+import { GithubIcon, GoogleIcon } from '../components/icons';
 import { useAuth } from '../context/AuthContext';
+
+function PosterArt() {
+  return (
+    <svg className="poster-art" viewBox="0 0 400 240" role="img" aria-label="Composición geométrica abstracta en rojo, ámbar y aqua">
+      <rect width="400" height="240" fill="#1A1A24" />
+      <circle cx="150" cy="118" r="88" fill="#E60026" />
+      <circle cx="150" cy="118" r="62" fill="none" stroke="#0D0D11" strokeWidth="4" />
+      <circle cx="150" cy="118" r="34" fill="none" stroke="#0D0D11" strokeWidth="4" />
+      <path d="M215 214 A85 85 0 0 1 385 214 Z" fill="#FFB300" />
+      <circle cx="318" cy="56" r="26" fill="none" stroke="#00E5FF" strokeWidth="5" />
+      <rect y="214" width="400" height="8" fill="#00E5FF" />
+    </svg>
+  );
+}
 
 export default function Login() {
   const { user, loading, signIn } = useAuth();
@@ -15,46 +29,35 @@ export default function Login() {
     setBusy(true);
     const { error: err } = await signIn(provider);
     if (err) {
-      setError('No pudimos iniciar sesión. Intenta de nuevo.');
+      setError('No pudimos iniciar sesión. Intentá de nuevo.');
       setBusy(false);
     } // si no hay error, el navegador redirige al proveedor
   }
 
   return (
     <main className="login">
-      <section className="marquee" aria-labelledby="titulo">
-        <div className="bulbs" aria-hidden="true" />
-        <div className="marquee-body">
-          <p className="eyebrow">Función continua</p>
-          <h1 id="titulo" className="neon-logo">Butaca</h1>
-          <span className="tube" aria-hidden="true" />
-
-          <div className="letterboard">
-            <span>Hoy en cartelera</span>
-            <strong>Tu ánimo</strong>
-          </div>
+      <section className="login-card">
+        <PosterArt />
+        <div className="login-body">
+          <h1 className="wordmark">Butaca<span className="dot">.</span></h1>
           <p className="lead">Encontrá qué ver en un instante, según cómo te sentís.</p>
 
           <div className="login-actions">
-            <div className="ticket-wrap red">
-              <button className="ticket red" disabled={busy} onClick={() => handleSignIn('google')}>
-                <GoogleIcon /> Entrar con Google
-              </button>
-            </div>
-            <div className="ticket-wrap aqua">
-              <button className="ticket aqua" disabled={busy} onClick={() => handleSignIn('github')}>
-                <GithubIcon /> Entrar con GitHub
-              </button>
-            </div>
+            <button className="provider" disabled={busy} onClick={() => handleSignIn('google')}>
+              <GoogleIcon /> Iniciar con Google
+            </button>
+            <button className="provider" disabled={busy} onClick={() => handleSignIn('github')}>
+              <GithubIcon /> Iniciar con GitHub
+            </button>
           </div>
 
           {error && <p className="error" role="alert">{error}</p>}
 
           <p className="fineprint">
             Tus datos están seguros.<br />
+            No almacenamos tu imagen.
           </p>
         </div>
-        <div className="bulbs" aria-hidden="true" />
       </section>
     </main>
   );

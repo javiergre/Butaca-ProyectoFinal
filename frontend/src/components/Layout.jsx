@@ -7,13 +7,13 @@ export default function Layout() {
   return (
     <div className="app">
       <header className="topbar">
-        <span className="neon-logo sm">Butaca</span>
+        <span className="wordmark sm">Butaca<span className="dot">.</span></span>
         <div className="who">
           <span className="who-name">{name}</span>
           <button className="ghost" onClick={signOut}>Salir</button>
         </div>
       </header>
-      <div className="bulbs" aria-hidden="true" />
+      <div className="stripes" aria-hidden="true" />
 
       <nav className="tabs" aria-label="Principal">
         <NavLink to="/" end>Recomendar</NavLink>
