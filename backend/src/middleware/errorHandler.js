@@ -1,1 +1,24 @@
-// TODO: manejo central de errores (sin filtrar detalles internos al cliente)
+
+export function errorHandler(err, req, res, next) {
+
+  // JSON inválido
+  if (err.type === 'entity.parse.failed') {
+    return res.status(400).json({
+      error: 'El formato JSON enviado no es válido'
+    });
+  }
+
+  // Solicitud demasiado grande
+  if (err.type === 'entity.too.large') {
+    return res.status(413).json({
+      error: 'La solicitud supera el tamaño permitido'
+    });
+  }
+
+  // Registrar únicamente errores internos inesperados
+  console.error('Error interno en Butaca API:', err.message);
+
+  return res.status(500).json({
+    error: 'Ocurrió un error interno del servidor'
+  });
+}

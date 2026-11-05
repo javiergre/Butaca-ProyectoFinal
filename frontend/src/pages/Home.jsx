@@ -1,4 +1,18 @@
 // TODO: MoodPicker + CameraCapture -> saveMood + getRecommendations -> grilla de MovieCard
+
+import LandingIntro from '../components/LandingIntro';
+
 export default function Home() {
-  return <h1>Recomendar</h1>;
+  return (
+    <>
+      <LandingIntro />
+
+      {/* TODO:
+        Integrar MoodPicker y CameraCapture.
+        Guardar el ánimo del usuario.
+        Mostrar recomendaciones mediante MovieCard.
+        Estas funcionalidades se integrarán después.
+      */}
+    </>
+  );
 }
