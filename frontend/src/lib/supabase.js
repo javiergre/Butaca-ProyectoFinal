@@ -1,2 +1,10 @@
-// TODO: crear el cliente de Supabase con VITE_SUPABASE_URL y VITE_SUPABASE_ANON_KEY
-export const supabase = null;
+import { createClient } from '@supabase/supabase-js';
+
+const url = import.meta.env.VITE_SUPABASE_URL;
+const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+if (!url || !key) {
+  console.warn('Faltan VITE_SUPABASE_URL o VITE_SUPABASE_ANON_KEY. Revisa tu .env');
+}
+
+export const supabase = createClient(url ?? 'http://localhost:54321', key ?? 'missing-anon-key');
