@@ -6,7 +6,7 @@ const schema = z.object({
   SUPABASE_URL: z.string().url(),
   SUPABASE_ANON_KEY: z.string().min(20),
   DATABASE_URL: z.string().min(1),
-  TMDB_API_KEY: z.string().min(1),
+  TMDB_READ_ACCESS_TOKEN: z.string().min(1),
 });
 
 const result = schema.safeParse(process.env);
