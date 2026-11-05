@@ -169,3 +169,33 @@ export async function getTvDetails(id) {
     backdropPath: series.backdrop_path ?? null
   };
 }
+
+
+
+export async function discoverRecommendations(
+  type,
+  genres,
+  page = 1
+) {
+  const path = type === 'movie'
+    ? '/discover/movie'
+    : '/discover/tv';
+
+  const data = await tmdbRequest(path, {
+    page,
+    with_genres: genres.join('|'),
+    sort_by: 'popularity.desc',
+    'vote_count.gte': 50,
+    include_adult: false
+  });
+
+  const normalize = type === 'movie'
+    ? normalizeMovie
+    : normalizeTv;
+
+  return {
+    page: data.page,
+    totalPages: data.total_pages,
+    results: data.results.map(normalize)
+  };
+}
