@@ -1,5 +1,5 @@
-
 import { Link, NavLink, Outlet } from 'react-router-dom';
+import { LogoMark } from './Logo';
 import { useAuth } from '../context/AuthContext';
 
 export default function Layout() {
@@ -18,19 +18,13 @@ export default function Layout() {
 
       <header className="topbar butaca-header">
         <Link to="/" className="butaca-brand">
-          <span className="butaca-brand-icon" aria-hidden="true">
-            B
-          </span>
-
+          <LogoMark className="brand-mark" />
           <span className="wordmark sm">
             Butaca<span className="dot">.</span>
           </span>
         </Link>
 
-        <nav
-          className="tabs butaca-navigation"
-          aria-label="Navegación principal"
-        >
+        <nav className="tabs butaca-navigation" aria-label="Navegación principal">
           <NavLink to="/" end>
             Inicio
           </NavLink>
@@ -59,10 +53,7 @@ export default function Layout() {
         </div>
       </header>
 
-      <div
-        className="stripes butaca-stripes"
-        aria-hidden="true"
-      />
+      <div className="stripes butaca-stripes" aria-hidden="true" />
 
       <main id="contenido" className="butaca-content">
         <Outlet />

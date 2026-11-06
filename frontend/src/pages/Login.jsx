@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { GithubIcon, GoogleIcon } from '../components/icons';
 import { useAuth } from '../context/AuthContext';
+import { LogoMark } from '../components/Logo';
 
 function PosterArt() {
   return (
@@ -39,6 +40,7 @@ export default function Login() {
       <section className="login-card">
         <PosterArt />
         <div className="login-body">
+          <LogoMark className="login-mark" />
           <h1 className="wordmark">Butaca<span className="dot">.</span></h1>
           <p className="lead">Encontrá qué ver en un instante, según cómo te sentís.</p>
 

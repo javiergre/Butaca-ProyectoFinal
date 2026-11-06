@@ -1,10 +1,10 @@
 :root {
   /* Paleta */
-  --bg: #0D0D11;       /* Onyx */
-  --panel: #1A1A24;    /* Shadow Grey */
-  --accent: #E60026;   /* Rojo Cine */
-  --amber: #FFB300;    /* Amber Flame */
-  --aqua: #00E5FF;     /* Electric Aqua */
+  --bg: #0D0D11;      
+  --panel: #1A1A24;    
+  --accent: #E60026;   
+  --amber: #FFB300;    
+  --aqua: #00E5FF;    
 
   /* Derivados: texto, bordes y errores */
   --text: #F2F2F6; --muted: #A3A3B5; --line: #34344A; --danger: #FF5C75;
@@ -72,7 +72,9 @@ button { font: inherit; cursor: pointer; }
 .tabs a:hover { color: var(--text); }
 .tabs a.active { color: var(--text); border-bottom-color: var(--accent); }
 
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+/* Logo (rama feature/auth-ui) */
+.login-mark { display: block; width: 96px; height: 96px; margin: 0 auto 1rem; }
+.brand-mark { width: 36px; height: 36px; flex: none; }
 
 
 /* BUTACA - DISEÑO GENERAL DEL FRONTEND */
@@ -576,3 +578,5 @@ button { font: inherit; cursor: pointer; }
     padding: 1.5rem;
   }
 }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
