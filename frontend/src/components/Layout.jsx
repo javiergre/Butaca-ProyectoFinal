@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom';
+import { LogoMark } from './Logo';
 import { useAuth } from '../context/AuthContext';
 
 export default function Layout() {
@@ -7,7 +8,10 @@ export default function Layout() {
   return (
     <div className="app">
       <header className="topbar">
-        <span className="wordmark sm">Butaca<span className="dot">.</span></span>
+        <span className="brand">
+          <LogoMark className="brand-mark" />
+          <span className="wordmark sm">Butaca<span className="dot">.</span></span>
+        </span>
         <div className="who">
           <span className="who-name">{name}</span>
           <button className="ghost" onClick={signOut}>Salir</button>

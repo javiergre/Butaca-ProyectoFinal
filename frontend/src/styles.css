@@ -72,4 +72,9 @@ button { font: inherit; cursor: pointer; }
 .tabs a:hover { color: var(--text); }
 .tabs a.active { color: var(--text); border-bottom-color: var(--accent); }
 
+/* Logo */
+.login-mark { display: block; width: 96px; height: 96px; margin: 0 auto 1rem; }
+.brand { display: flex; align-items: center; gap: .6rem; }
+.brand-mark { width: 36px; height: 36px; flex: none; }
+
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
