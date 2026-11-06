@@ -29,6 +29,10 @@ export default function Layout() {
             Inicio
           </NavLink>
 
+          <NavLink to="/detectar">
+            Detectar
+          </NavLink>
+
           <NavLink to="/dashboard">
             Mi tablero
           </NavLink>
