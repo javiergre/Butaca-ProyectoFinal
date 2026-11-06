@@ -1,0 +1,63 @@
+.dash { display: grid; gap: 1.5rem; }
+.dash-title { font-style: italic; font-weight: 900; font-size: clamp(2rem, 6vw, 2.8rem); margin: 0 0 .4rem; }
+.dash-cta { max-width: 320px; text-decoration: none; }
+.dash-retry, .dash-more { justify-self: start; }
+
+.dash-card { background: var(--panel); border: 2px solid var(--line); box-shadow: 5px 5px 0 var(--line);
+  padding: 1.5rem; min-width: 0; }
+.dash-card h2 { margin: 0 0 1.25rem; font-size: 1.3rem; }
+
+/* Estadísticas */
+.dash-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.25rem; }
+.stat { display: grid; gap: .35rem; align-content: start; }
+.stat-label { color: var(--amber); font-size: .72rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+.stat-value { font-family: var(--display); font-size: 2.2rem; line-height: 1.1; }
+.stat-mood { display: flex; align-items: center; gap: .6rem; font-size: 1.7rem; }
+.stat-note { color: var(--muted); }
+
+.dash-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+@media (min-width: 860px) { .dash-grid { grid-template-columns: 1fr 1fr; } }
+
+/* Dona */
+.donut-wrap { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+.donut { width: 180px; height: 180px; flex: none; }
+.donut-total { fill: var(--text); font: 900 26px var(--display); }
+.donut-caption { fill: var(--muted); font: 600 6.5px var(--body); letter-spacing: .2em; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; flex: 1; min-width: 150px; }
+.legend li { display: flex; align-items: center; gap: .6rem; }
+.legend li strong { margin-left: auto; }
+.swatch { width: 14px; height: 14px; flex: none; }
+
+/* Semana */
+.week { display: grid; grid-template-columns: repeat(7, 1fr); gap: .4rem; align-items: end; min-height: 190px; }
+.week-col { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: .35rem; }
+.week-stack { display: flex; flex-direction: column-reverse; gap: 4px; align-items: center; }
+.pip { width: 16px; height: 16px; border-radius: 50%; }
+.week-more { color: var(--muted); font-size: .7rem; }
+.week-day { color: var(--muted); font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  border-top: 2px solid var(--line); padding-top: .4rem; width: 100%; text-align: center; }
+.week-col.today .week-day { color: var(--amber); border-top-color: var(--amber); }
+
+/* Barras de géneros */
+.gbars { list-style: none; margin: 0; padding: 0; display: grid; gap: .8rem; }
+.gbars li { display: grid; grid-template-columns: minmax(90px, 140px) 1fr 2rem; gap: .75rem; align-items: center; }
+.gbar { display: block; height: 14px; min-width: 6px; background: var(--amber); }
+.gbars strong { text-align: right; }
+
+/* Patrones */
+.patterns { margin: 0; padding: 0; list-style: none; display: grid; gap: .8rem; }
+.patterns li { padding-left: 1.1rem; border-left: 4px solid var(--aqua); line-height: 1.5; }
+
+/* Historial */
+.history { list-style: none; margin: 0 0 1rem; padding: 0; }
+.history li { display: flex; align-items: center; gap: .8rem; padding: .6rem 0; border-bottom: 1px solid var(--line); }
+.history-date { margin-left: auto; color: var(--muted); font-size: .9rem; }
+
+.dash-face { width: 34px; height: 34px; flex: none; fill: none; stroke: currentColor; stroke-width: 3.5;
+  stroke-linecap: round; stroke-linejoin: round; }
+.stat-mood .dash-face { width: 40px; height: 40px; }
+
+@media (max-width: 520px) {
+  .dash-card { padding: 1.1rem; }
+  .donut { margin: 0 auto; }
+}
