@@ -33,6 +33,10 @@ export default function Layout() {
             Detectar
           </NavLink>
 
+          <NavLink to="/catalog">
+            Catálogo
+            </NavLink>
+
           <NavLink to="/dashboard">
             Mi tablero
           </NavLink>

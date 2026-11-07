@@ -1,0 +1,152 @@
+
+/* Tarjetas del catálogo de Butaca */
+
+.catalog-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+  height: 100%;
+  background: #1a1a24;
+  border: 1px solid #343440;
+  border-radius: 12px;
+  color: #f2f2f6;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.catalog-card:hover {
+  transform: translateY(-4px);
+  border-color: #e60026;
+}
+
+.catalog-card-poster {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  background: #101016;
+}
+
+.catalog-card-poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.catalog-card-no-image {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  color: #aaaab5;
+  text-align: center;
+}
+
+.catalog-card-type {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 6px 10px;
+  background: #e60026;
+  color: white;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.catalog-card-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+.catalog-card-info h3 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.catalog-card-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: #aaaab5;
+  font-size: 14px;
+}
+
+.catalog-card-rating {
+  color: #ffb300;
+  font-weight: bold;
+}
+
+.catalog-card-description {
+  font-size: 14px;
+}
+
+.catalog-card-description summary {
+  color: #00e5ff;
+  cursor: pointer;
+}
+
+.catalog-card-description p {
+  color: #bcbcc8;
+  line-height: 1.6;
+}
+
+.catalog-card-favorite {
+  width: 100%;
+  margin-top: auto;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid #e60026;
+  border-radius: 6px;
+  color: #f2f2f6;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.catalog-card-favorite:hover,
+.catalog-card-favorite.active {
+  background: #e60026;
+  color: white;
+}
+
+@media (max-width: 520px) {
+  .catalog-card-info {
+    padding: 12px;
+  }
+
+  .catalog-card-info h3 {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .catalog-card {
+    transition: none;
+  }
+}
+
+.catalog-card-details-link {
+  display: block;
+  padding: 10px 14px;
+  border: 1px solid #00e5ff;
+  border-radius: 6px;
+  color: #00e5ff;
+  text-decoration: none;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.catalog-card-details-link:hover {
+  background: rgba(0, 229, 255, 0.12);
+}
+
+.catalog-card-details-link:focus-visible {
+  outline: 2px solid #00e5ff;
+  outline-offset: 3px;
+}

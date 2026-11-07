@@ -4,6 +4,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Dashboard from './pages/Dashboard';
 import Favorites from './pages/Favorites';
 import Home from './pages/Home';
+import Catalog from './pages/Catalog';
+import CatalogDetail from './pages/CatalogDetail';
 import Login from './pages/Login';
 import Mood from './pages/Mood';
 
@@ -14,6 +16,8 @@ export default function App() {
       <Route element={<ProtectedRoute />}>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/catalog" element={<Catalog />} />
+          <Route path="/catalog/:type/:id" element={<CatalogDetail />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/detectar" element={<Mood />} />
