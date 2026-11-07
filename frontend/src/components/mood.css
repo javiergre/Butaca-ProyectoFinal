@@ -48,4 +48,8 @@
 .seat.on .face { color: #0D0D11; }
 .face-inline { width: 30px; height: 30px; vertical-align: -9px; margin-right: .5rem; }
 
+.mood-page:has(.recs .catalog-grid) { max-width: 1100px; }
+.recs { margin-top: 3rem; scroll-margin-top: 1rem; }
+.recs-title { font-style: italic; font-weight: 900; font-size: clamp(1.6rem, 5vw, 2.1rem); margin: 0 0 1.25rem; }
+
 @media (prefers-reduced-motion: reduce) { .spinner { animation: none; } .seat { transition: none; } }
