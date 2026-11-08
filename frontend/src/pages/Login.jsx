@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { GithubIcon, GoogleIcon } from '../components/icons';
+import { GithubIcon, GoogleIcon } from '../components/Icons';
 import { useAuth } from '../context/AuthContext';
 import { LogoMark } from '../components/Logo';
 
