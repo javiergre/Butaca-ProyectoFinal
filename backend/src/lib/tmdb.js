@@ -181,12 +181,23 @@ export async function discoverRecommendations(
     ? '/discover/movie'
     : '/discover/tv';
 
+  const today = new Date().toISOString().slice(0, 10);
+
   const data = await tmdbRequest(path, {
     page,
-    with_genres: genres.join('|'),
+    with_genres: genres.slice(0, 2).join(','),
     sort_by: 'popularity.desc',
     'vote_count.gte': 50,
-    include_adult: false
+    include_adult: false,
+
+    // Excluir películas o series con fecha de estreno futura
+    ...(type === 'movie'
+      ? {
+          'primary_release_date.lte': today
+        }
+      : {
+          'first_air_date.lte': today
+        })
   });
 
   const normalize = type === 'movie'

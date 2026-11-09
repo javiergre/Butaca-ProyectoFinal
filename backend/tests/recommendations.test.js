@@ -104,7 +104,7 @@ describe('Motor de recomendaciones - Butaca', () => {
     const [url] = fetchMock.mock.calls[0];
 
     expect(url.searchParams.get('with_genres'))
-      .toBe(EMOTION_GENRES.sad.movie.join('|'));
+      .toBe(EMOTION_GENRES.sad.movie.slice(0, 2).join(','));
   });
 
   it('Recomienda series para surprised', async () => {
@@ -232,7 +232,7 @@ describe('Motor de recomendaciones - Butaca', () => {
     .toBe('false');
 
   expect(url.searchParams.get('with_genres'))
-    .toBe(EMOTION_GENRES.happy.movie.join('|'));
+    .toBe(EMOTION_GENRES.happy.movie.slice(0, 2).join(','));
 });
 
 });
