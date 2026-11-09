@@ -121,10 +121,11 @@ describe('Consultas del tablero - Butaca', () => {
     // Los géneros compartidos suman ambas emociones.
     // Cada género se cuenta una sola vez por emoción.
     expect(res.body.genres).toEqual([
-      { name: 'Animación', count: 5 },
       { name: 'Comedia', count: 5 },
       { name: 'Familia', count: 5 },
-      { name: 'Aventura', count: 3 }
+      { name: 'Acción y aventura', count: 3 },
+      { name: 'Aventura', count: 3 },
+      { name: 'Drama', count: 2 }
     ]);
   });
 
