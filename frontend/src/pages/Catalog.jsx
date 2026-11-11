@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import MovieCard from '../components/MovieCard';
 import { api } from '../lib/api';
 import './catalog.css';
+import { useFavorites } from '../context/useFavorites';
+
 
 export default function Catalog() {
   const [type, setType] = useState('movie');
@@ -11,6 +13,14 @@ export default function Catalog() {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+
+  const {
+    loading: favoritesLoading,
+    error: favoritesError,
+    isFavorite,
+    toggle
+  } = useFavorites();
+
 
   useEffect(() => {
     let active = true;
@@ -95,6 +105,15 @@ export default function Catalog() {
         </button>
       </div>
 
+      {favoritesError && (
+        <p
+          className="catalog-message catalog-error"
+          role="alert"
+        >
+          {favoritesError}
+        </p>
+      )}
+
       {loading && (
         <p className="catalog-message" role="status">
           Cargando catálogo...
@@ -117,10 +136,14 @@ export default function Catalog() {
         <>
           <div className="catalog-grid">
             {movies.map((movie) => (
-              <MovieCard
-                key={`${movie.mediaType}-${movie.id}`}
-                item={movie}
-              />
+
+<MovieCard
+  key={`${movie.mediaType}-${movie.id}`}
+  item={movie}
+  isFavorite={isFavorite(movie)}
+  onToggle={favoritesLoading ? undefined : toggle}
+/>
+
             ))}
           </div>
 
