@@ -52,4 +52,8 @@
 .recs { margin-top: 3rem; scroll-margin-top: 1rem; }
 .recs-title { font-style: italic; font-weight: 900; font-size: clamp(1.6rem, 5vw, 2.1rem); margin: 0 0 1.25rem; }
 
+.mood-type { margin: 0 0 1.75rem; }
+.mood-type .mood-or { margin-top: 0; margin-bottom: .75rem; }
+.mood-type .catalog-filters { display: flex; justify-content: center; }
+
 @media (prefers-reduced-motion: reduce) { .spinner { animation: none; } .seat { transition: none; } }

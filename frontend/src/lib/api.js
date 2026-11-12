@@ -36,8 +36,10 @@ export const api = {
       `/catalog/${item.mediaType === 'tv' ? 'tv' : 'movie'}/${encodeURIComponent(item.id)}`
     ),
 
-  getRecommendations: (emotion) =>
-    request(`/recommendations?emotion=${encodeURIComponent(emotion)}`).then((r) => r.results ?? []),
+  getRecommendations: (emotion, type) =>
+    request(
+      `/recommendations?emotion=${encodeURIComponent(emotion)}${type ? `&type=${type}` : ''}`
+    ).then((r) => r.results ?? []),
 
   saveMood: ({ emotion, confidence }) => request('/moods', { method: 'POST', body: { emotion, confidence } }),
 
