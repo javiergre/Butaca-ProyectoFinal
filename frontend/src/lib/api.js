@@ -24,8 +24,22 @@ async function request(path, { method = 'GET', body } = {}) {
 }
 
 export const api = {
-  getRecommendations: (emotion) =>
-    request(`/recommendations?emotion=${encodeURIComponent(emotion)}`).then((r) => r.results ?? []),
+    getCatalogMovies: (page = 1) =>
+    request(`/catalog/movies?page=${page}`),
+
+  getCatalogTv: (page = 1) =>
+    request(`/catalog/tv?page=${page}`),
+
+
+  getCatalogDetails: (item) =>
+    request(
+      `/catalog/${item.mediaType === 'tv' ? 'tv' : 'movie'}/${encodeURIComponent(item.id)}`
+    ),
+
+  getRecommendations: (emotion, type) =>
+    request(
+      `/recommendations?emotion=${encodeURIComponent(emotion)}${type ? `&type=${type}` : ''}`
+    ).then((r) => r.results ?? []),
 
   saveMood: ({ emotion, confidence }) => request('/moods', { method: 'POST', body: { emotion, confidence } }),
 

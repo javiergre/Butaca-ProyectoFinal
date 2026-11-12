@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 
 export default function LandingIntro() {
@@ -25,7 +24,11 @@ export default function LandingIntro() {
           </p>
 
           <div className="home-buttons">
-            <a href="#como-funciona" className="home-btn-primary">
+            <Link to="/detectar" className="home-btn-primary">
+              Detectar mi ánimo
+            </Link>
+
+            <a href="#como-funciona" className="home-btn-secondary">
               Descubre cómo funciona
             </a>
 

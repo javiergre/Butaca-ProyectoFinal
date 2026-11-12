@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { GithubIcon, GoogleIcon } from '../components/icons';
+import { GithubIcon, GoogleIcon } from '../components/Icons';
 import { useAuth } from '../context/AuthContext';
+import { LogoMark } from '../components/Logo';
 
 function PosterArt() {
   return (
@@ -22,7 +23,16 @@ export default function Login() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
+  useEffect(() => {
+    const reset = (e) => {
+      if (e.persisted) setBusy(false);
+    };
+    window.addEventListener('pageshow', reset);
+    return () => window.removeEventListener('pageshow', reset);
+  }, []);
+
   if (!loading && user) return <Navigate to="/" replace />;
+
 
   async function handleSignIn(provider) {
     setError('');
@@ -39,6 +49,7 @@ export default function Login() {
       <section className="login-card">
         <PosterArt />
         <div className="login-body">
+          <LogoMark className="login-mark" />
           <h1 className="wordmark">Butaca<span className="dot">.</span></h1>
           <p className="lead">Encontrá qué ver en un instante, según cómo te sentís.</p>
 
