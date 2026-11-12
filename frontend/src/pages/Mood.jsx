@@ -8,6 +8,12 @@ import { useFavorites } from '../context/useFavorites';
 import { api } from '../lib/api';
 import { MOODS } from '../lib/emotion';
 
+const TYPES = {
+  movie: { label: 'Películas', plural: 'películas' },
+  tv: { label: 'Series', plural: 'series' },
+};
+
+
 const normalize = (x) => ({
   ...x,
   id: x.id ?? x.tmdbId,
@@ -19,34 +25,43 @@ const normalize = (x) => ({
 });
 
 export default function Mood() {
+  const [type, setType] = useState('movie');
   const [mood, setMood] = useState(null);
   const [items, setItems] = useState([]);
   const [status, setStatus] = useState('idle'); 
   const [saveError, setSaveError] = useState(false);
   const { isFavorite, toggle, error: favError } = useFavorites();
 
+  const typeRef = useRef('movie'); 
   const lastRequest = useRef(0);
   const resultsRef = useRef(null);
 
-  async function handleMood(detected) {
+  async function loadRecs(emotion, kind) {
     const id = ++lastRequest.current;
-    setMood(detected);
-    setSaveError(false);
     setStatus('loading');
-
-    const [saved, recs] = await Promise.allSettled([
-      api.saveMood(detected),
-      api.getRecommendations(detected.emotion),
-    ]);
-    if (id !== lastRequest.current) return; 
-
-    if (saved.status === 'rejected') setSaveError(true);
-    if (recs.status === 'fulfilled') {
-      setItems(recs.value.map(normalize));
+    try {
+      const list = await api.getRecommendations(emotion, kind);
+      if (id !== lastRequest.current) return; 
+      setItems(list.map(normalize).filter((x) => x.mediaType === kind));
       setStatus('done');
-    } else {
+    } catch {
+      if (id !== lastRequest.current) return;
       setStatus('error');
     }
+  }
+
+  function handleMood(detected) {
+    setMood(detected);
+    setSaveError(false);
+    api.saveMood(detected).catch(() => setSaveError(true));
+    loadRecs(detected.emotion, typeRef.current);
+  }
+
+  function changeType(next) {
+    if (next === typeRef.current) return;
+    typeRef.current = next;
+    setType(next);
+    if (mood) loadRecs(mood.emotion, next);
   }
 
   useEffect(() => {
@@ -58,6 +73,24 @@ export default function Mood() {
   return (
     <section className="mood-page">
       <h1 className="mood-title">¿Cómo te sentís hoy?</h1>
+
+      <div className="mood-type">
+        <h2 className="mood-or">¿Qué querés ver?</h2>
+        <div className="catalog-filters" aria-label="Tipo de contenido">
+          {Object.entries(TYPES).map(([value, t]) => (
+            <button
+              key={value}
+              type="button"
+              className={type === value ? 'selected' : ''}
+              aria-pressed={type === value}
+              onClick={() => changeType(value)}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <CameraCapture onDetected={handleMood} />
 
       <h2 className="mood-or">O elegí tu butaca</h2>
@@ -86,9 +119,13 @@ export default function Mood() {
 
         {status === 'done' && (
           <>
-            <h2 className="recs-title">Para tu ánimo {MOODS[mood.emotion].label.toLowerCase()}</h2>
+            <h2 className="recs-title">
+              {TYPES[type].label} para tu ánimo {MOODS[mood.emotion].label.toLowerCase()}
+            </h2>
             {items.length === 0 ? (
-              <p className="status">No encontramos títulos para este ánimo. Probá con otro.</p>
+              <p className="status">
+                No encontramos {TYPES[type].plural} para este ánimo. Probá con otro ánimo o cambiá el tipo.
+              </p>
             ) : (
               <div className="catalog-grid">
                 {items.map((it) => (
