@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { api } from '../lib/api';
 import './catalog-detail.css';
+import { useFavorites } from '../context/useFavorites';
+
 
 const POSTER_BASE = 'https://image.tmdb.org/t/p/w500';
 
@@ -12,6 +14,14 @@ export default function CatalogDetail() {
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+
+const {
+  loading: favoritesLoading,
+  error: favoritesError,
+  isFavorite,
+  toggle
+} = useFavorites();
+
 
   useEffect(() => {
     let active = true;
@@ -152,6 +162,29 @@ export default function CatalogDetail() {
                 <strong>Estado:</strong> {item.status}
               </p>
             )}
+
+
+<button
+  type="button"
+  className={`detail-favorite-button ${
+    isFavorite(item) ? 'active' : ''
+  }`}
+  disabled={favoritesLoading}
+  aria-pressed={isFavorite(item)}
+  onClick={() => toggle(item)}
+>
+  {isFavorite(item)
+    ? '♥ Quitar de favoritos'
+    : '♡ Agregar a favoritos'}
+</button>
+
+{favoritesError && (
+  <p className="detail-error" role="alert">
+    {favoritesError}
+  </p>
+)}
+
+
           </div>
         </div>
       )}

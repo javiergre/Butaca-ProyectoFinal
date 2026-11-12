@@ -108,3 +108,38 @@
     max-width: 300px;
   }
 }
+
+/* Botón de favoritos en detalles */
+
+.detail-favorite-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  margin-top: 24px;
+  padding: 12px 24px;
+  background: transparent;
+  border: 2px solid #e60026;
+  border-radius: 8px;
+  color: #f2f2f6;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.detail-favorite-button:hover,
+.detail-favorite-button.active {
+  background: #e60026;
+  color: #ffffff;
+}
+
+.detail-favorite-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.detail-favorite-button:focus-visible {
+  outline: 2px solid #00e5ff;
+  outline-offset: 3px;
+}
