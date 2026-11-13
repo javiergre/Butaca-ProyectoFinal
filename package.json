@@ -5,5 +5,9 @@
     "install:all": "npm --prefix frontend install && npm --prefix backend install",
     "dev:front": "npm --prefix frontend run dev",
     "dev:back": "npm --prefix backend run dev"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "@types/node": "^26.6.6"
   }
 }
